@@ -34,6 +34,7 @@
                     <label class="col-sm-2 control-label" for="title">新闻标题</label>
                     <div class="col-sm-10">
                         <input class="form-control" id="title" name="title" value="${title}" type="text" />
+
                     </div>
                 </div>
                 <div class="form-group">
