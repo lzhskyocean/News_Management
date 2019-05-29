@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.lzh.dao.NewsCommentDao">
+
+    <!--
+    //通过newsId查询对应的所评论
+    List<NewsComment> findNewsCommentByNewsId(@Param("id") Long newsId);
+    -->
+    <select id="findNewsCommentByNewsId" resultType="NewsComment">
+        select * from news_comment where news_id = #{newsId};
+    </select>
+
+    <!--
+    //添加评论
+    Integer saveNewsCommentByNewsId(NewsComment newsComment);
+    -->
+    <insert id="saveNewsCommentByNewsId">
+        insert into news_comment
+        (author, content, news_id)
+        values
+        (#{author},#{content},#{newsId})
+    </insert>
+
+    <!--
+    //通过newsId删除评论
+    Integer deleteNewsCommentByNewsId(@Param("newsId") Long newsId);
+    -->
+    <delete id="deleteNewsCommentByNewsId">
+        delete from news_comment  where news_id = #{newsId}
+    </delete>
+
+</mapper>

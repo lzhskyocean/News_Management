@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cotext="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+
+    <!--1.加载properties配置文件-->
+    <cotext:property-placeholder location="classpath:database.properties"/>
+
+    <!--2.配置数据源dataSource-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <!--加载数据库基本参数-->
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+
+    </bean>
+
+    <!--3.配置SqlSessionFactoryBean-->
+    <bean class="org.mybatis.spring.SqlSessionFactoryBean">
+
+        <!--3.1加载数据源-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--3.2加载mybatis核心配置文件-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--3.3配置别名-->
+        <property name="typeAliasesPackage" value="com.lzh.bean"/>
+
+    </bean>
+
+
+    <!--4.扫描映射文件MapperScannerConfigurer-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!--指定映射文件的包-->
+        <property name="basePackage" value="com.lzh.dao"/>
+
+    </bean>
+
+
+
+</beans>
