@@ -48,7 +48,7 @@ public class NewsDetailServiceImpl implements NewsDetailService {
         if (count==1){
             Integer count2 = newsCommentDao.deleteNewsCommentByNewsId(newsId);
 
-            if (count2>0){//多条
+            if (count2>=0){//多条或者
                 return true;
             }
         }
