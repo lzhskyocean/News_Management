@@ -86,6 +86,9 @@
                     </c:if>
                 </div>
             </div>
+            <div style="text-align: center">
+                <span id="sp" style="font-size: 20px;"></span>
+            </div>
         </div>
     </div>
 </div>
@@ -114,8 +117,9 @@
                 success:function (result) {
                     if (result == "true"){
                         $(obj).parent().parent().remove();
+                        $("#sp").html("删除成功!").css("color","green");
                     } else {
-                        alert("系统正忙,删除失败!!!")
+                        $("#sp").html("删除失败!").css("color","red");
                     }
                 },
                 error:function (result) {
