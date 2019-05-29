@@ -112,7 +112,7 @@
                 type:"DELETE",
                 dataType:"text",
                 success:function (result) {
-                    if (result){
+                    if (result == "true"){
                         $(obj).parent().parent().remove();
                     } else {
                         alert("系统正忙,删除失败!!!")
